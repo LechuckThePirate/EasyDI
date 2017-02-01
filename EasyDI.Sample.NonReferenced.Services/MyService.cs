@@ -1,5 +1,5 @@
 ﻿using System;
-using EasyDI.Core.Classes;
+using EasyDI.Core.Contracts.Attributes;
 using EasyDI.Sample.Contracts.Interfaces;
 
 namespace EasyDI.Sample.NonReferenced.Services

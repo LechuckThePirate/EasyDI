@@ -51,6 +51,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EasyDI.Core.Contracts\EasyDI.Core.Contracts.csproj">
+      <Project>{6F2555E6-DA16-4835-B0B3-8EAF3D2D85B5}</Project>
+      <Name>EasyDI.Core.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EasyDI.Core\EasyDI.Core.csproj">
       <Project>{3100B0B6-1AA5-4137-8D6E-272A9CCC0708}</Project>
       <Name>EasyDI.Core</Name>

@@ -1,6 +1,7 @@
 ﻿using System;
 using EasyDI.Core.Classes;
-using EasyDI.Core.Contracts;
+using EasyDI.Core.Contracts.Enums;
+using EasyDI.Core.Contracts.Interfaces;
 using Ninject;
 
 namespace EasyDI.nInject

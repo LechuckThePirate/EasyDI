@@ -5,6 +5,9 @@ using System.Linq;
 using System.Reflection;
 using EasyDI.Core.Classes;
 using EasyDI.Core.Contracts;
+using EasyDI.Core.Contracts.Attributes;
+using EasyDI.Core.Contracts.Enums;
+using EasyDI.Core.Contracts.Interfaces;
 
 namespace EasyDI.Core
 {
@@ -29,11 +32,11 @@ namespace EasyDI.Core
 
         #region .: Public methods :.
 
-        public virtual void RegisterDependencies(EasyDISettings options)
+        public virtual void RegisterDependencies(EasyDISettings options = null)
         {
             var assemblies = new List<Assembly>();
-            assemblies.AddRange(GetReferencedAssemblies(options.AssemblyFilter));
-            assemblies.AddRange(GetNonReferencedAssemblies(options.ExternalAssemblyFilter));
+            assemblies.AddRange(GetReferencedAssemblies(options?.AssemblyFilter));
+            assemblies.AddRange(GetNonReferencedAssemblies(options?.ExternalAssemblyFilter));
 
             _allTypes = assemblies.SelectMany(a => a.ExportedTypes);
             var typesToRegister = _allTypes
@@ -47,7 +50,7 @@ namespace EasyDI.Core
             typesToRegister.Where(t => t.IsClass && !t.IsAbstract).ToList()
                 .ForEach(RegisterClass);
 
-            options.ClassesForcedToRegister?.ForEach(RegisterClassAsSelf);
+            options?.ClassesForcedToRegister?.ForEach(RegisterClassAsSelf);
 
             Engine.BuildDependencies();
 
@@ -112,20 +115,29 @@ namespace EasyDI.Core
             return result;
         }
 
-        private IEnumerable<Assembly> GetReferencedAssemblies(IEnumerable<string> filter ) 
+        private IEnumerable<Assembly> GetReferencedAssemblies(IEnumerable<string> filter )
         {
             var result = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(a => IsAnyMatch(a.GetName().Name,filter));
+                .Where(a => filter == null || IsAnyMatch(a.GetName().Name,filter));
             return result;
-        } 
+        }
 
         private IEnumerable<Assembly> GetNonReferencedAssemblies(IEnumerable<string> matches)
         {
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bin");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
             var result =  Directory.GetFiles(path, "*.dll")
                 .Concat(Directory.GetFiles(path, "*.exe"))
-                .Where(file => IsAnyMatch(file,matches))
+                .Where(file => matches == null || IsAnyMatch(file,matches) && AssemblyIsNotLoaded(file))
                 .Select(Assembly.LoadFrom);
+            return result;
+        }
+
+        private bool AssemblyIsNotLoaded(string filename)
+        {
+            var result =
+                AppDomain.CurrentDomain.GetAssemblies()
+                    .Select(assembly => assembly.Location)
+                    .All(location => !string.Equals(filename, location, StringComparison.InvariantCultureIgnoreCase));
             return result;
         }
 

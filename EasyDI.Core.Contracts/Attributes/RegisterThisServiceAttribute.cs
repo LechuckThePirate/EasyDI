@@ -1,6 +1,7 @@
 ﻿using System;
+using EasyDI.Core.Contracts.Enums;
 
-namespace EasyDI.Core.Classes
+namespace EasyDI.Core.Contracts.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
     public class RegisterThisServiceAttribute : Attribute

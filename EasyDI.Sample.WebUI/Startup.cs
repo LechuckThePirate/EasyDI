@@ -6,6 +6,7 @@ using EasyDI.Autofac.MVC;
 using EasyDI.Core;
 using EasyDI.Core.Classes;
 using EasyDI.Core.Contracts;
+using EasyDI.Core.Contracts.Interfaces;
 using EasyDI.Sample.WebUI;
 using Microsoft.Owin;
 using Owin;

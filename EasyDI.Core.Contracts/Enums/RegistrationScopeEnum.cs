@@ -1,4 +1,4 @@
-﻿namespace EasyDI.Core.Classes
+﻿namespace EasyDI.Core.Contracts.Enums
 {
     public enum RegistrationScopeEnum
     {

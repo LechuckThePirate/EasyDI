@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3100B0B6-1AA5-4137-8D6E-272A9CCC0708}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{0126163F-F89B-4470-AFEE-E1C54D0CE31A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyDI.Core</RootNamespace>
-    <AssemblyName>EasyDI.Core</AssemblyName>
+    <RootNamespace>EasyDI.Sample.ConsoleApp</RootNamespace>
+    <AssemblyName>EasyDI.Sample.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,28 +34,43 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\NameValueParameter.cs" />
-    <Compile Include="EasyDIService.cs" />
-    <Compile Include="Classes\EasyDISettings.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyDI.Core.Contracts\EasyDI.Core.Contracts.csproj">
       <Project>{6f2555e6-da16-4835-b0b3-8eaf3d2d85b5}</Project>
       <Name>EasyDI.Core.Contracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
+    <ProjectReference Include="..\EasyDI.Core\EasyDI.Core.csproj">
+      <Project>{3100b0b6-1aa5-4137-8d6e-272a9ccc0708}</Project>
+      <Name>EasyDI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDI.nInject\EasyDI.nInject.csproj">
+      <Project>{28c69c80-162f-48f1-b50d-3c76aa7c0fa7}</Project>
+      <Name>EasyDI.nInject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDI.Sample.Contracts\EasyDI.Sample.Contracts.csproj">
+      <Project>{6E6D4414-748F-4B23-A371-6B1E671740C4}</Project>
+      <Name>EasyDI.Sample.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyDI.Sample.NonReferenced.Services\EasyDI.Sample.NonReferenced.Services.csproj">
+      <Project>{c5749906-dc84-4eb7-ab4e-8b6b44231d66}</Project>
+      <Name>EasyDI.Sample.NonReferenced.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EasyDI.Core\EasyDI.Core.csproj">
-      <Project>{3100B0B6-1AA5-4137-8D6E-272A9CCC0708}</Project>
-      <Name>EasyDI.Core</Name>
+    <ProjectReference Include="..\EasyDI.Core.Contracts\EasyDI.Core.Contracts.csproj">
+      <Project>{6f2555e6-da16-4835-b0b3-8eaf3d2d85b5}</Project>
+      <Name>EasyDI.Core.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\EasyDI.Sample.Contracts\EasyDI.Sample.Contracts.csproj">
       <Project>{6E6D4414-748F-4B23-A371-6B1E671740C4}</Project>

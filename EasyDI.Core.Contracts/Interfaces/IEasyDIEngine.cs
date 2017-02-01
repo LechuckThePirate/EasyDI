@@ -1,7 +1,7 @@
 ﻿using System;
-using EasyDI.Core.Classes;
+using EasyDI.Core.Contracts.Enums;
 
-namespace EasyDI.Core.Contracts
+namespace EasyDI.Core.Contracts.Interfaces
 {
     public interface IEasyDIEngine
     {

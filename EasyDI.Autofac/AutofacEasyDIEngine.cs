@@ -3,7 +3,8 @@ using Autofac;
 using Autofac.Builder;
 using Autofac.Integration.Mvc;
 using EasyDI.Core.Classes;
-using EasyDI.Core.Contracts;
+using EasyDI.Core.Contracts.Enums;
+using EasyDI.Core.Contracts.Interfaces;
 
 
 namespace EasyDI.Autofac

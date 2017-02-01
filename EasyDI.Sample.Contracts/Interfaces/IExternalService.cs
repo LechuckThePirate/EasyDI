@@ -1,4 +1,5 @@
-﻿namespace EasyDI.Sample.Contracts.Interfaces
+﻿
+namespace EasyDI.Sample.Contracts.Interfaces
 {
     public interface IExternalService
     {

@@ -1,4 +1,6 @@
 ﻿using EasyDI.Core.Classes;
+using EasyDI.Core.Contracts.Attributes;
+using EasyDI.Core.Contracts.Enums;
 
 namespace EasyDI.Sample.WebUI.Services
 {
