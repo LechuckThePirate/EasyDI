@@ -47,16 +47,11 @@ namespace EasyDI.Core
             typesToRegister.Where(t => t.IsClass && !t.IsAbstract).ToList()
                 .ForEach(RegisterClass);
 
-            if (options.ClassesForcedToRegister!= null)
-                options.ClassesForcedToRegister.ForEach(RegisterClassAsSelf);
+            options.ClassesForcedToRegister?.ForEach(RegisterClassAsSelf);
 
             Engine.BuildDependencies();
 
         }
-
-        #endregion
-
-        #region .: ILocatorService implementation :.
 
         public T GetService<T>() where T : class => _engine.GetService<T>();
 
@@ -72,8 +67,7 @@ namespace EasyDI.Core
 
         protected RegistrationScopeEnum GetRegistrationType(Type t)
         {
-            var attr = t.GetCustomAttributes(typeof(RegisterThisServiceAttribute), false).FirstOrDefault()
-                as RegisterThisServiceAttribute;
+            var attr = t.GetCustomAttribute<RegisterThisServiceAttribute>(false);
             attr = attr ?? new RegisterThisServiceAttribute();
             return attr.RegistrationType;
         }
@@ -82,7 +76,7 @@ namespace EasyDI.Core
         {
             if (t.GetInterfaces().Any())
                 t.GetInterfaces()
-                    .Where(i => !i.GetCustomAttributes(typeof(DontRegisterThisServiceAttribute),false).Any())
+                    .Where(i => !i.GetCustomAttributes<DontRegisterThisServiceAttribute>(false).Any())
                     .ToList()
                     .ForEach(i => _engine.Register(t, i, GetRegistrationType(t)));
             else
@@ -105,7 +99,7 @@ namespace EasyDI.Core
         {
             var attr = typeof(TClass).GetCustomAttributes(typeof(RegisterThisServiceAttribute), false).FirstOrDefault()
                 as RegisterThisServiceAttribute;
-            _engine.Register(typeof(TClass), @interface, (attr != null) ? attr.RegistrationType : RegistrationScopeEnum.Default);
+            _engine.Register(typeof(TClass), @interface, attr?.RegistrationType ?? RegistrationScopeEnum.Default);
         }
 
         #endregion
