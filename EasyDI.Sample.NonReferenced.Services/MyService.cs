@@ -2,7 +2,7 @@
 using EasyDI.Core.Classes;
 using EasyDI.Sample.Contracts.Interfaces;
 
-namespace DITest.NonReferenced.Services
+namespace EasyDI.Sample.NonReferenced.Services
 {
     [RegisterThisService]
     public class MyService : IExternalService
